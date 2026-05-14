@@ -140,13 +140,12 @@ Countries_Comparison <- function(countries, ratio, average = FALSE) {
   
   #The computation of the mean can be helpful to follow the average trend of a specific selection of country
   if(average == TRUE){
-    mean <- array(data = NA, dim = ncol(Countries_matrix))
-  }
-  
+    mean_vec <- array(data = NA, dim = ncol(Countries_matrix))
   
   for (h in 1:ncol(Countries_matrix)) {
     #The mean is calculated as the arithmetic mean of the countries' observations per each year
-    mean[h]<-mean(as.numeric(Countries_matrix[,h]))
+    mean_vec[h]<-mean(as.numeric(Countries_matrix[,h]))
+  }
   }
   
   #Colors are determined beforehand for coherency throughout the report - palette can always be changed
@@ -160,7 +159,7 @@ Countries_Comparison <- function(countries, ratio, average = FALSE) {
     legend("bottom", legend=c(countries),lty=1, xpd=TRUE, inset  = c(0, -0.275), horiz = TRUE, col=c(cols))
   
     if(average == TRUE){
-      lines(Year, mean,type="o", pch=1, lty=1, lwd=1, col="black")
+      lines(Year, mean_vec,type="o", pch=1, lty=1, lwd=1, col="black")
       legend("topleft", legend = "Average", pch = 1)
     }
     
@@ -187,5 +186,5 @@ Countries_Comparison <- function(countries, ratio, average = FALSE) {
 }
 
 # # The function allows to compare inequality trends per a given country
-Countries_Comparison(countries = c("Italy", "Spain", "France"),ratio = "90/50 Ratio", average = TRUE)
+Countries_Comparison(countries = c("Italy", "Spain", "France"),ratio = "90/10 Ratio", average = FALSE)
 Countries_Comparison(countries = c("Argentina", "Brazil", "Venezuela", "Ecuador"),ratio = "90/10 Ratio", average=TRUE)
